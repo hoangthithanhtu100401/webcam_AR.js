@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AR.js Marker-based Tracking Example</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body>
+    <a-scene embedded arjs>
+      <a-marker preset="hiro">
+        <a-text value="Hello, AR!" position="0 0.5 0" scale="1 1 1"></a-text>
+        <a-box position="0 0.25 0" width="1" height="0.5" depth="1" color="red"></a-box>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+    <script>
+      // Get the marker element
+      var marker = document.querySelector("a-marker");
+
+      // Add an event listener to the marker to detect when it is loaded
+      marker.addEventListener("markerFound", function () {
+        // Get the box element
+        var box = document.querySelector("a-box");
+
+        // Get the size of the box element
+        var width = box.getAttribute("width");
+        var height = box.getAttribute("height");
+        var depth = box.getAttribute("depth");
+
+        // Log the size of the box element
+        console.log("Width: " + width + " Height: " + height + " Depth: " + depth);
+      });
+    </script>
+  </body>
+</html>
